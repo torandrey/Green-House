@@ -19,7 +19,6 @@
       font-family: sans-serif;
     }
 
-    /* === АНИМАЦИЯ: Плавное появление с масштабированием (fade-in) === */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -31,7 +30,6 @@
       }
     }
 
-    /* === КРУГЛЫЙ ЛОГОТИП ПОД ТЕКСТОМ GREEN HOUSE === */
     #round-logo {
       width: 180px;
       height: 180px;
@@ -42,7 +40,6 @@
       animation-delay: 0.5s;
     }
 
-    /* ======= ПОЛУПРОЗРАЧНАЯ ПОЛОСА (фиксированная) ======= */
     #top-bar {
       position: fixed;
       top: 0;
@@ -58,21 +55,18 @@
       z-index: 1000;
     }
 
-    /* ======= ССЫЛКА-ОБЕРТКА ДЛЯ ЛОГОТИПА ======= */
     #logo-link {
       display: flex;
       align-items: center;
       height: 100%;
     }
 
-    /* ======= ЛОГОТИП ======= */
     #logo {
       height: 90%;
       width: auto;
       display: block;
     }
 
-    /* ======= НАВИГАЦИОННЫЕ КНОПКИ ======= */
     #nav-buttons {
       display: flex;
       flex: 1;
@@ -96,7 +90,6 @@
       background-color: rgba(0, 100, 0, 0.3);
     }
 
-    /* ======= ТЕКСТ В ЦЕНТРЕ ======= */
     #main-title {
       position: absolute;
       top: calc(40% + 110px);
@@ -118,7 +111,6 @@
       color: #004400;
     }
 
-    /* ======= БУРГЕР-МЕНЮ ДЛЯ МОБИЛОК ======= */
     #burger {
       display: none;
       flex-direction: column;
@@ -132,7 +124,6 @@
       margin: 3px 0;
     }
 
-    /* ======= АДАПТАЦИЯ ======= */
     @media (max-width: 768px) {
       #nav-buttons {
         display: none;
@@ -158,45 +149,533 @@
 </head>
 <body>
 
-  <!-- === ПЕРВЫЙ БЛОК: ОБЕРТКА === -->
-  <section id="main-block">
+<section id="main-block">
+  <div id="top-bar">
+    <a href="index.html" id="logo-link">
+      <img src="img/главная/logo.png" alt="Логотип" id="logo">
+    </a>
 
-    <!-- === ПОЛУПРОЗРАЧНАЯ ПОЛОСА === -->
-    <div id="top-bar">
-      <!-- ЛОГОТИП (теперь кликабелен) -->
-      <a href="index.html" id="logo-link">
-        <img src="img/главная/logo.png" alt="Логотип" id="logo">
-      </a>
-
-      <!-- НАВИГАЦИОННЫЕ КНОПКИ -->
-      <div id="nav-buttons">
-        <a href="foto.html" class="nav-button">Фото</a>
-        <a href="razmeshchenie.html" class="nav-button">Цены и размещения</a>
-        <a href="uslugi.html" class="nav-button">Услуги</a>
-        <a href="#contacts" class="nav-button">Контакты</a>
-      </div>
-
-      <!-- БУРГЕР-МЕНЮ -->
-      <div id="burger" onclick="toggleMenu()">
-        <div class="burger-line"></div>
-        <div class="burger-line"></div>
-        <div class="burger-line"></div>
-      </div>
+    <div id="nav-buttons">
+      <a id="photo-link" class="nav-button">Фото</a>
+      <a href="razmeshchenie.html" class="nav-button">Цены и размещения</a>
+      <a href="uslugi.html" class="nav-button">Услуги</a>
+      <a href="#contacts" class="nav-button">Контакты</a>
     </div>
 
-    <!-- === ТЕКСТ В ЦЕНТРЕ === -->
-    <div id="main-title">
-      <h1 id="site-name">GREEN HOUSE</h1>
-      <img src="img/главная/2.png" alt="Круглый логотип" id="round-logo">
-      <p id="slogan">Отдых на Алтае</p>
+    <div id="burger" onclick="toggleMenu()">
+      <div class="burger-line"></div>
+      <div class="burger-line"></div>
+      <div class="burger-line"></div>
     </div>
+  </div>
 
-  </section>
+  <div id="main-title">
+    <h1 id="site-name">GREEN HOUSE</h1>
+    <img src="img/главная/2.png" alt="Круглый логотип" id="round-logo">
+    <p id="slogan">Отдых на Алтае</p>
+  </div>
+</section>
 
-  <!-- === СКРИПТ ДЛЯ БУРГЕРА === -->
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('nav-buttons');
-      nav.classList.toggle('active');
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('nav-buttons');
+    nav.classList.toggle('active');
+  }
+
+  // Автоматически корректируем ссылку "Фото"
+  const photoLink = document.getElementById('photo-link');
+  if (location.pathname.includes('index.html') || location.pathname === '/' || location.pathname === '') {
+    photoLink.href = '#gallery';
+  } else {
+    photoLink.href = 'index.html#gallery';
+  }
+</script>
+
+
+<!-- === --------------------------------------------2 блок === -->
+
+<!-- Блок с закреплённым фоном и вертикальными карточками -->
+<div style="
+  background: url('img/главная/3.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 60px 20px;
+">
+
+  <div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  ">
+
+    <!-- Карточка 2 -->
+    <div style="
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      overflow: hidden;
+      width: 100%;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      font-family: sans-serif;
+    ">
+
+      <img id="mainImage2" src="img/фото номеров/2.jpg" alt="Номер" style="
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: 0.3s ease;
+      ">
+
+      <div style="padding: 20px;">
+        <h2 style="margin-top: 0; font-size: 24px;">Основной корпус</h2>
+        <p style="font-size: 16px; line-height: 1.5;">
+          Уютные трёхместные номера
+        </p>
+        <ul style="padding-left: 18px; margin: 10px 0; font-size: 15px;">
+          <li>Вместимость: 3 человека</li>
+          <li>Кровати: по 3 односпальные</li>
+          <li>Стоимость: <span style="color: #4dafff; font-weight: bold;">4500 руб/сутки</span></li>
+        </ul>
+
+        <div style="
+          display: flex;
+          gap: 6px;
+          margin-top: 10px;
+          overflow-x: auto;
+        ">
+          <img onclick="document.getElementById('mainImage2').src=this.src" src="img/фото номеров/2.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+          <img onclick="document.getElementById('mainImage2').src=this.src" src="img/фото номеров/3.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+        </div>
+      </div>
+    </div>
+ <!-- Карточка 2 -->
+
+    <div style="
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      overflow: hidden;
+      width: 100%;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      font-family: sans-serif;
+    ">
+
+      <img id="mainImage3" src="img/фото номеров/2.jpg" alt="Номер" style="
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: 0.3s ease;
+      ">
+
+      <div style="padding: 20px;">
+        <h2 style="margin-top: 0; font-size: 24px;">Основной корпус</h2>
+        <p style="font-size: 16px; line-height: 1.5;">
+          Двухкомнатные номера
+        </p>
+        <ul style="padding-left: 18px; margin: 10px 0; font-size: 15px;">
+          <li>Кровати: 3 односпальные + мягкая мебель в зале</li>
+          <li>Стоимость: <span style="color: #4dafff; font-weight: bold;">6000 руб/сутки</span></li>
+        </ul>
+
+        <div style="
+          display: flex;
+          gap: 6px;
+          margin-top: 10px;
+          overflow-x: auto;
+        ">
+          <img onclick="document.getElementById('mainImage3').src=this.src" src="img/фото номеров/2.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+          <img onclick="document.getElementById('mainImage3').src=this.src" src="img/фото номеров/3.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+        </div>
+      </div>
+    </div>
+<!-- Карточка 2 -->
+
+    <div style="
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      overflow: hidden;
+      width: 100%;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      font-family: sans-serif;
+    ">
+
+      <img id="mainImage4" src="img/фото номеров/2.jpg" alt="Номер" style="
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: 0.3s ease;
+      ">
+
+      <div style="padding: 20px;">
+        <h2 style="margin-top: 0; font-size: 24px;">Основной корпус</h2>
+        <p style="font-size: 16px; line-height: 1.5;">
+          Двухкомнатные номера
+        </p>
+        <ul style="padding-left: 18px; margin: 10px 0; font-size: 15px;">
+          <li>Кровати: 5 односпальных</li>
+          <li>Стоимость: <span style="color: #4dafff; font-weight: bold;">6000 руб/сутки</span></li>
+        </ul>
+
+        <div style="
+          display: flex;
+          gap: 6px;
+          margin-top: 10px;
+          overflow-x: auto;
+        ">
+          <img onclick="document.getElementById('mainImage4').src=this.src" src="img/фото номеров/2.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+          <img onclick="document.getElementById('mainImage4').src=this.src" src="img/фото номеров/3.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+        </div>
+      </div>
+    </div>
+<!-- Карточка 2 -->
+
+    <div style="
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      overflow: hidden;
+      width: 100%;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      font-family: sans-serif;
+    ">
+
+      <img id="mainImage5" src="img/фото номеров/2.jpg" alt="Номер" style="
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: 0.3s ease;
+      ">
+
+      <div style="padding: 20px;">
+        <h2 style="margin-top: 0; font-size: 24px;">Отдельно стоящие дома</h2>
+        <p style="font-size: 16px; line-height: 1.5;">
+          Дом №4 и №5
+        </p>
+        <ul style="padding-left: 18px; margin: 10px 0; font-size: 15px;">
+          <li>Вместимость: 2–3 человека</li>
+          <li>Кровати: двуспальная + односпальная</li>
+          <li>Стоимость: <span style="color: #4dafff; font-weight: bold;">4000 руб/сутки</span></li>
+        </ul>
+
+        <div style="
+          display: flex;
+          gap: 6px;
+          margin-top: 10px;
+          overflow-x: auto;
+        ">
+          <img onclick="document.getElementById('mainImage5').src=this.src" src="img/фото номеров/2.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+          <img onclick="document.getElementById('mainImage5').src=this.src" src="img/фото номеров/3.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+        </div>
+      </div>
+    </div>
+<!-- Карточка 2 -->
+
+    <div style="
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      overflow: hidden;
+      width: 100%;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      font-family: sans-serif;
+    ">
+
+      <img id="mainImage6" src="img/фото номеров/2.jpg" alt="Номер" style="
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: 0.3s ease;
+      ">
+
+      <div style="padding: 20px;">
+        <h2 style="margin-top: 0; font-size: 24px;">Отдельно стоящие дома</h2>
+        <p style="font-size: 16px; line-height: 1.5;">
+          Дом №1
+        </p>
+        <ul style="padding-left: 18px; margin: 10px 0; font-size: 15px;">
+          <li>Вместимость: 2–5 человек</li>
+          <li>Двухэтажный</li>
+          <li>на 2 этаже — спальня, на 1 этаже — холл с диваном</li>
+          <li>Кровати: двуспальная + диван</li>
+          <li>Удобства: телевизор</li>
+          <li>Стоимость: <span style="color: #4dafff; font-weight: bold;">11000 руб/сутки</span></li>
+        </ul>
+
+        <div style="
+          display: flex;
+          gap: 6px;
+          margin-top: 10px;
+          overflow-x: auto;
+        ">
+          <img onclick="document.getElementById('mainImage6').src=this.src" src="img/фото номеров/2.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+          <img onclick="document.getElementById('mainImage6').src=this.src" src="img/фото номеров/3.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+        </div>
+      </div>
+    </div>
+<!-- Карточка 2 -->
+
+    <div style="
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      overflow: hidden;
+      width: 100%;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      font-family: sans-serif;
+    ">
+
+      <img id="mainImage7" src="img/фото номеров/2.jpg" alt="Номер" style="
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: 0.3s ease;
+      ">
+
+      <div style="padding: 20px;">
+        <h2 style="margin-top: 0; font-size: 24px;">Отдельно стоящие дома</h2>
+        <p style="font-size: 16px; line-height: 1.5;">
+          Дом №2
+        </p>
+        <ul style="padding-left: 18px; margin: 10px 0; font-size: 15px;">
+          <li>Вместимость: 6–9 человек</li>
+          <li>Коттедж, двухэтажный</li>
+          <li>2 этаж: 3 спальни</li>
+          <li>1 этаж: зал, кухня, веранда</li>
+          <li>2 спальни: по двуспальной</li>
+          <li>1 спальня: 2 односпальные + кресло</li>
+          <li>Удобства: телевизор, кухня, веранда</li>
+          <li>Стоимость: <span style="color: #4dafff; font-weight: bold;">14000 руб/сутки</span></li>
+        </ul>
+
+        <div style="
+          display: flex;
+          gap: 6px;
+          margin-top: 10px;
+          overflow-x: auto;
+        ">
+          <img onclick="document.getElementById('mainImage7').src=this.src" src="img/фото номеров/2.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+          <img onclick="document.getElementById('mainImage7').src=this.src" src="img/фото номеров/3.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+        </div>
+      </div>
+    </div>
+ <!-- Карточка 2 -->
+    <div style="
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      overflow: hidden;
+      width: 100%;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      font-family: sans-serif;
+    ">
+
+      <img id="mainImage8" src="img/фото номеров/2.jpg" alt="Номер" style="
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: 0.3s ease;
+      ">
+
+      <div style="padding: 20px;">
+        <h2 style="margin-top: 0; font-size: 24px;">Отдельно стоящие дома</h2>
+        <p style="font-size: 16px; line-height: 1.5;">
+          Дом №3
+        </p>
+        <ul style="padding-left: 18px; margin: 10px 0; font-size: 15px;">
+          <li>Вместимость: 2–4 человека</li>
+          <li>Одноэтажный, делится на 2 отдельных номера</li>
+          <li>Кровати: двуспальная + диван</li>
+          <li>Удобства: телевизор, кухня, веранда</li>
+          <li>Стоимость: <span style="color: #4dafff; font-weight: bold;">9000 руб/сутки</span></li>
+        </ul>
+
+        <div style="
+          display: flex;
+          gap: 6px;
+          margin-top: 10px;
+          overflow-x: auto;
+        ">
+          <img onclick="document.getElementById('mainImage8').src=this.src" src="img/фото номеров/2.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+          <img onclick="document.getElementById('mainImage8').src=this.src" src="img/фото номеров/3.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+        </div>
+      </div>
+    </div>
+ <!-- Карточка 2 -->
+    <div style="
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      overflow: hidden;
+      width: 100%;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      font-family: sans-serif;
+    ">
+
+      <img id="mainImage9" src="img/фото номеров/2.jpg" alt="Номер" style="
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: 0.3s ease;
+      ">
+
+      <div style="padding: 20px;">
+        <h2 style="margin-top: 0; font-size: 24px;">Семейный номер</h2>
+        <p style="font-size: 16px; line-height: 1.5;">
+          Уютный вариант для всей семьи. Зона отдыха, кухня, всё под рукой.
+        </p>
+        <ul style="padding-left: 18px; margin: 10px 0; font-size: 15px;">
+          <li>Вместимость каждого номера: 2–4 человека</li>
+          <li>Кровати: двуспальная + диван</li>
+          <li>Удобства: телевизор, кухня</li>
+          <li>Особенность: на первом этаже администрация</li>
+          <li>Стоимость: <span style="color: #4dafff; font-weight: bold;">6500 руб/сутки</span></li>
+        </ul>
+
+        <div style="
+          display: flex;
+          gap: 6px;
+          margin-top: 10px;
+          overflow-x: auto;
+        ">
+          <img onclick="document.getElementById('mainImage9').src=this.src" src="img/фото номеров/2.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+          <img onclick="document.getElementById('mainImage9').src=this.src" src="img/фото номеров/3.jpg" style="cursor:pointer; width: 80px; height: 60px; object-fit:cover; border-radius:6px;">
+        </div>
+      </div>
+    </div>
+    <!-- Добавь ещё карточки 3 и 4 по той же структуре -->
+
+  </div>
+</div>
+<!-- === --------------------------------------------3 блок === -->
+<section id="contacts">
+  <style>
+    /* 4-й блок Контакты */
+    #contacts {
+      background-image: url('img/главная/3.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #333333; /* тёмно-серый */
+      padding: 60px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-family: Arial, sans-serif;
+      gap: 40px;
+      min-height: 350px;
+      box-sizing: border-box;
     }
-  </script>
+
+    /* Левая часть с текстом */
+    #contacts .contacts-info {
+      flex: 1 1 350px;
+      max-width: 450px;
+    }
+
+    #contacts .contacts-info h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #333333; /* заголовок тёмно-серый */
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    #contacts .contacts-info p {
+      font-size: 20px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      color: #333333; /* основной текст тёмно-серый */
+      cursor: default;
+    }
+
+    /* Ссылки для телефона и WhatsApp */
+    #contacts .contacts-info a {
+      color: #333333; /* тёмно-серый */
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    #contacts .contacts-info a:hover {
+      color: #a3d55d; /* светло-зеленый при наведении */
+      text-decoration: underline;
+    }
+
+    /* Правая часть — карта */
+    #contacts .contacts-map {
+      flex: 1 1 400px;
+      max-width: 600px;
+      height: 350px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      /* Добавим рамку для отладки - убрать после проверки */
+      /* border: 2px solid red; */
+    }
+
+    /* iframe должен гарантированно занимать весь контейнер */
+    #contacts .contacts-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Адаптив */
+    @media (max-width: 900px) {
+      #contacts {
+        flex-direction: column;
+        padding: 40px 20px;
+        min-height: auto;
+      }
+      #contacts .contacts-info,
+      #contacts .contacts-map {
+        max-width: 100%;
+        flex: none;
+        margin-bottom: 30px;
+      }
+      #contacts .contacts-map {
+        height: 300px;
+      }
+    }
+  </style>
+
+  <div class="contacts-info">
+    <h2>КОНТАКТЫ</h2>
+    <p>
+      <a href="tel:+79635078510">+7‒963‒507‒85‒10</a> (нажмите, чтобы позвонить)<br>
+      <a href="https://wa.me/79635078510" target="_blank" rel="noopener noreferrer">WhatsApp</a> (нажмите, чтобы открыть чат)<br><br>
+      Green House<br>
+      Прибрежная улица, 8<br>
+      пос. Известковый, Майминский район,<br>
+      Республика Алтай, 649104
+    </p>
+  </div>
+
+  <div class="contacts-map">
+<iframe
+  src="https://yandex.ru/map-widget/v1/?ll=85.72776%2C51.757274&z=15&pt=85.72776,51.757274,pm2rdm"
+  width="100%" height="100%" frameborder="0" allowfullscreen style="border:none;">
+</iframe>
+
+  </div>
+</section>
