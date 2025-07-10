@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Green House — база отдыха</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+html {
+  scroll-behavior: smooth;
+}
+
+    /* ======= ФОН ПЕРВОГО БЛОКА ======= */
+    #main-block {
+      background-image: url('img/главная/1.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      position: relative;
+      font-family: sans-serif;
+    }
+/* === АНИМАЦИЯ: Плавное появление с масштабированием (fade-in) === */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* полностью прозрачный */
+    transform: scale(0.8); /* немного уменьшен */
+  }
+  to {
+    opacity: 1; /* полностью видим */
+    transform: scale(1); /* нормальный размер */
+  }
+}
+
+/* === КРУГЛЫЙ ЛОГОТИП ПОД ТЕКСТОМ GREEN HOUSE === */
+#round-logo {
+  width: 180px;             /* ширина логотипа */
+  height: 180px;            /* высота логотипа */
+  margin: -40px auto;        /* отступ сверху/снизу + по центру */
+  display: block;           /* блочный элемент */
+
+  /* === ЭФФЕКТ FADE-IN === */
+  opacity: 0;                         /* изначально невидим */
+  animation: fadeIn 1.5s ease-out forwards; /* запускаем анимацию */
+  animation-delay: 0.5s;              /* задержка перед началом */
+}
+
+
+
+
+    /* ======= ПОЛУПРОЗРАЧНАЯ ПОЛОСА (фиксированная) ======= */
+#top-bar {
+  position: fixed; /* БЫЛО: absolute */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5cm;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+    /* ======= ЛОГОТИП ======= */
+    #logo {
+      height: 90%;
+    }
+
+    /* ======= НАВИГАЦИОННЫЕ КНОПКИ ======= */
+    #nav-buttons {
+      display: flex;
+      flex: 1;
+      justify-content: space-evenly;
+      align-items: center;
+      margin-left: 20px;
+    }
+
+    .nav-button {
+      font-weight: bold;
+      font-size: 16px;
+      background-color: rgba(0, 100, 0, 0.15);
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #004400;
+      transition: background 0.3s;
+    }
+
+    .nav-button:hover {
+      background-color: rgba(0, 100, 0, 0.3);
+    }
+
+    /* ======= ТЕКСТ В ЦЕНТРЕ ======= */
+    #main-title {
+      position: absolute;
+      top: calc(40% + 110px);
+      left: 50%;
+      transform: translate(-50%, -60%);
+      text-align: center;
+      color: green;
+    }
+
+    #main-title h1 {
+      font-size: 46px;
+      font-weight: 900;
+      font-family: Georgia, serif;
+    }
+
+    #main-title p {
+      font-size: 28px;
+      font-weight: 500;
+      color: #004400;
+    }
+
+    /* ======= БУРГЕР-МЕНЮ ДЛЯ МОБИЛОК ======= */
+    #burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .burger-line {
+      width: 25px;
+      height: 3px;
+      background-color: #004400;
+      margin: 3px 0;
+    }
+
+    /* ======= АДАПТАЦИЯ ======= */
+    @media (max-width: 768px) {
+      #nav-buttons {
+        display: none;
+        position: absolute;
+        top: 1.5cm;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 10px 0;
+        z-index: 9;
+      }
+
+      #nav-buttons.active {
+        display: flex;
+      }
+
+      #burger {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === ПЕРВЫЙ БЛОК: ОБЕРТКА === -->
+  <section id="main-block">
+
+    <!-- === ПОЛУПРОЗРАЧНАЯ ПОЛОСА === -->
+    <div id="top-bar">
+      <!-- ЛОГОТИП -->
+      <img src="img/главная/logo.png" alt="Логотип" id="logo">
+
+      <!-- НАВИГАЦИОННЫЕ КНОПКИ -->
+      <div id="nav-buttons">
+        <a href="foto.html" class="nav-button">Фото</a>
+        <a href="razmeshchenie.html" class="nav-button">Цены и размещения</a>
+        <a href="uslugi.html" class="nav-button">Услуги</a>
+        <a href="#contacts" class="nav-button">Контакты</a>
+      </div>
+
+      <!-- БУРГЕР-МЕНЮ -->
+      <div id="burger" onclick="toggleMenu()">
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+        <div class="burger-line"></div>
+      </div>
+    </div>
+
+    <!-- === ТЕКСТ В ЦЕНТРЕ === -->
+<div id="main-title">
+  <h1 id="site-name">GREEN HOUSE</h1>
+  <img src="img/главная/2.png" alt="Круглый логотип" id="round-logo">
+  <p id="slogan">Отдых на Алтае</p>
+</div>
+
+
+  </section>
+
+  <!-- === СКРИПТ ДЛЯ БУРГЕРА === -->
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('nav-buttons');
+      nav.classList.toggle('active');
+    }
+  </script>
+<!-- === --------------------------------------------2 блок === -->
+<section id="about-us">
+  <style>
+    /* === Стили для блока "О нас" === */
+
+    #about-us {
+      background-image: url('img/главная/3.1.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 60px 40px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      min-height: 300px;
+    }
+
+    /* Левая часть с фото */
+    #about-us .about-photo {
+      flex: 1 1 300px;
+      max-width: 350px;
+    }
+
+    #about-us .about-photo img {
+      width: 100%;
+      border-radius: 30px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      display: block;
+    }
+
+    /* Правая часть с текстом */
+    #about-us .about-text {
+      flex: 2 1 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #about-us .about-text h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #a3d55d;
+    }
+
+    #about-us .about-text p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 600px;
+      color: #333333; /* Черный цвет для описания */
+      margin-bottom: 30px;
+    }
+
+    /* Кнопки */
+    #about-us .about-text a.btn {
+      display: inline-block;
+      background-color: #a3d55d;
+      color: #fff;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 18px;
+      width: max-content;
+      transition: background-color 0.3s ease;
+      margin-bottom: 15px;
+    }
+
+    #about-us .about-text a.btn:hover {
+      background-color: #8bc243;
+    }
+
+    /* Адаптив */
+    @media (max-width: 900px) {
+      #about-us {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+      }
+      #about-us .about-photo,
+      #about-us .about-text {
+        max-width: 100%;
+        flex: none;
+      }
+      #about-us .about-text h2 {
+        font-size: 36px;
+      }
+      #about-us .about-text p {
+        max-width: 100%;
+      }
+      #about-us .about-text a.btn {
+        margin: 0 auto 15px;
+      }
+    }
+  </style>
+
+  <div class="about-photo">
+    <img src="img/главная/4.png" alt="О нас - фото">
+  </div>
+
+  <div class="about-text">
+    <h2>О НАС</h2>
+    <p>
+      Добро пожаловать в Green House — уютный уголок на Алтае, где природа и комфорт создают идеальные условия для отдыха. Мы предлагаем качественное размещение, дружелюбную атмосферу и множество возможностей для активного и спокойного времяпрепровождения. Здесь каждый найдёт своё вдохновение и заряд энергии.
+    </p>
+    <a href="gallery.html" class="btn">Наша галерея</a>
+    <a href="prices.html" class="btn">Цены и размещения</a>
+  </div>
+</section>
+
+
+<!-- === --------------------------------------------3 блок === -->
+<section id="advantages">
+  <style>
+    /* === Стили для блока преимуществ === */
+
+    #advantages {
+      background-image: url('img/главная/3.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 60px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .advantage-card {
+      background-color: rgba(50, 50, 50, 0.25);
+      width: 280px;
+      padding: 30px 20px;
+      border-radius: 12px;
+      text-align: center;
+      color: white;
+      font-family: sans-serif;
+      backdrop-filter: blur(3px);
+      box-sizing: border-box;
+    }
+
+    .advantage-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .advantage-card h3 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .advantage-card p {
+      font-size: 16px;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      .advantage-card {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <!-- Карточки с картинками -->
+  <div class="advantage-card">
+    <img src="img/главная/icon1.jpg" alt="Супер отдых">
+    <h3>Джип-туры</h3>
+    <p>Внедорожные маршруты по горам, долинам и рекам. Настоящее приключение для всей компании!</p>
+  </div>
+
+  <div class="advantage-card">
+    <img src="img/главная/icon2.jpg" alt="Чистый воздух">
+    <h3>Конные прогулки</h3>
+    <p>Покатайтесь верхом по тропам и лесам. Для новичков и опытных всадников — незабываемо!</p>
+  </div>
+
+  <div class="advantage-card">
+    <img src="img/главная/icon3.jpg" alt="Баня и природа">
+    <h3>Искусственное озеро</h3>
+    <p>Идеальное место для купания, отдыха и фото на фоне кристально чистой воды и горных пейзажей.</p>
+  </div>
+
+  <div class="advantage-card">
+    <img src="img/главная/icon4.jpg" alt="Уютные дома">
+    <h3>Катание на моторных лодках</h3>
+    <p>Быстрая прогулка по Катуни с ветерком и яркими впечатлениями. Отличный отдых для любителей воды!</p>
+  </div>
+
+  <div class="advantage-card">
+    <img src="img/главная/icon5.jpg" alt="Гостеприимство">
+    <h3>Аренда квадроциклов</h3>
+    <p>Прокат квадроциклов по живописным маршрутам рядом с базой. Отличный выбор для любителей скорости и природы!</p>
+  </div>
+
+  <div class="advantage-card">
+    <img src="img/главная/icon6.jpg" alt="Детская площадка">
+    <h3>Сплавы на лодках</h3>
+    <p>Увлекательные и безопасные маршруты по реке. Идеально для всей семьи и начинающих туристов.</p>
+  </div>
+</section>
+
+<!-- === --------------------------------------------4 блок === -->
+<section id="contacts">
+  <style>
+    /* 4-й блок Контакты */
+    #contacts {
+      background-image: url('img/главная/3.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #333333; /* тёмно-серый */
+      padding: 60px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-family: Arial, sans-serif;
+      gap: 40px;
+      min-height: 350px;
+      box-sizing: border-box;
+    }
+
+    /* Левая часть с текстом */
+    #contacts .contacts-info {
+      flex: 1 1 350px;
+      max-width: 450px;
+    }
+
+    #contacts .contacts-info h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #333333; /* заголовок тёмно-серый */
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    #contacts .contacts-info p {
+      font-size: 20px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      color: #333333; /* основной текст тёмно-серый */
+      cursor: default;
+    }
+
+    /* Ссылки для телефона и WhatsApp */
+    #contacts .contacts-info a {
+      color: #333333; /* тёмно-серый */
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    #contacts .contacts-info a:hover {
+      color: #a3d55d; /* светло-зеленый при наведении */
+      text-decoration: underline;
+    }
+
+    /* Правая часть — карта */
+    #contacts .contacts-map {
+      flex: 1 1 400px;
+      max-width: 600px;
+      height: 350px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      /* Добавим рамку для отладки - убрать после проверки */
+      /* border: 2px solid red; */
+    }
+
+    /* iframe должен гарантированно занимать весь контейнер */
+    #contacts .contacts-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Адаптив */
+    @media (max-width: 900px) {
+      #contacts {
+        flex-direction: column;
+        padding: 40px 20px;
+        min-height: auto;
+      }
+      #contacts .contacts-info,
+      #contacts .contacts-map {
+        max-width: 100%;
+        flex: none;
+        margin-bottom: 30px;
+      }
+      #contacts .contacts-map {
+        height: 300px;
+      }
+    }
+  </style>
+
+  <div class="contacts-info">
+    <h2>КОНТАКТЫ</h2>
+    <p>
+      <a href="tel:+79635078510">+7‒963‒507‒85‒10</a> (нажмите, чтобы позвонить)<br>
+      <a href="https://wa.me/79635078510" target="_blank" rel="noopener noreferrer">WhatsApp</a> (нажмите, чтобы открыть чат)<br><br>
+      Green House<br>
+      Прибрежная улица, 8<br>
+      пос. Известковый, Майминский район,<br>
+      Республика Алтай, 649104
+    </p>
+  </div>
+
+  <div class="contacts-map">
+<iframe
+  src="https://yandex.ru/map-widget/v1/?ll=85.72776%2C51.757274&z=15&pt=85.72776,51.757274,pm2rdm"
+  width="100%" height="100%" frameborder="0" allowfullscreen style="border:none;">
+</iframe>
+
+  </div>
+</section>
+
