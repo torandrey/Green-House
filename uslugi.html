@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Green House — база отдыха</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ======= ФОН ПЕРВОГО БЛОКА ======= */
+    #main-block {
+      background-image: url('img/главная/1.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      position: relative;
+      font-family: sans-serif;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    #round-logo {
+      width: 180px;
+      height: 180px;
+      margin: -40px auto;
+      display: block;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+
+    #top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1.5cm;
+      background-color: rgba(255, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    #logo-link {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    #logo {
+      height: 90%;
+      width: auto;
+      display: block;
+    }
+
+    #nav-buttons {
+      display: flex;
+      flex: 1;
+      justify-content: space-evenly;
+      align-items: center;
+      margin-left: 20px;
+    }
+
+    .nav-button {
+      font-weight: bold;
+      font-size: 16px;
+      background-color: rgba(0, 100, 0, 0.15);
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #004400;
+      transition: background 0.3s;
+    }
+
+    .nav-button:hover {
+      background-color: rgba(0, 100, 0, 0.3);
+    }
+
+    #main-title {
+      position: absolute;
+      top: calc(40% + 110px);
+      left: 50%;
+      transform: translate(-50%, -60%);
+      text-align: center;
+      color: green;
+    }
+
+    #main-title h1 {
+      font-size: 46px;
+      font-weight: 900;
+      font-family: Georgia, serif;
+    }
+
+    #main-title p {
+      font-size: 28px;
+      font-weight: 500;
+      color: #004400;
+    }
+
+    #burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .burger-line {
+      width: 25px;
+      height: 3px;
+      background-color: #004400;
+      margin: 3px 0;
+    }
+
+    @media (max-width: 768px) {
+      #nav-buttons {
+        display: none;
+        position: absolute;
+        top: 1.5cm;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 10px 0;
+        z-index: 9;
+      }
+
+      #nav-buttons.active {
+        display: flex;
+      }
+
+      #burger {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section id="main-block">
+  <div id="top-bar">
+    <a href="index.html" id="logo-link">
+      <img src="img/главная/logo.png" alt="Логотип" id="logo">
+    </a>
+
+    <div id="nav-buttons">
+      <a id="photo-link" class="nav-button">Фото</a>
+      <a href="razmeshchenie.html" class="nav-button">Цены и размещения</a>
+      <a href="uslugi.html" class="nav-button">Услуги</a>
+      <a href="#contacts" class="nav-button">Контакты</a>
+    </div>
+
+    <div id="burger" onclick="toggleMenu()">
+      <div class="burger-line"></div>
+      <div class="burger-line"></div>
+      <div class="burger-line"></div>
+    </div>
+  </div>
+
+  <div id="main-title">
+    <h1 id="site-name">GREEN HOUSE</h1>
+    <img src="img/главная/2.png" alt="Круглый логотип" id="round-logo">
+    <p id="slogan">Отдых на Алтае</p>
+  </div>
+</section>
+
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('nav-buttons');
+    nav.classList.toggle('active');
+  }
+
+  // Автоматически корректируем ссылку "Фото"
+  const photoLink = document.getElementById('photo-link');
+  if (location.pathname.includes('index.html') || location.pathname === '/' || location.pathname === '') {
+    photoLink.href = '#gallery';
+  } else {
+    photoLink.href = 'index.html#gallery';
+  }
+</script>
+
+<!-- === --------------------------------------------2 блок === -->
+
+<section style="background: url('img/главная/3.jpg') center/cover no-repeat fixed; padding: 40px 20px; color: white;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 30px; background: rgba(0,0,0,0.5); border-radius: 16px; padding: 30px;">
+    
+    <!-- Блок кафе -->
+    <div style="flex: 1 1 400px;">
+      <h2 style="font-size: 32px; margin-bottom: 20px;">🍽 Наше кафе</h2>
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <thead>
+          <tr style="border-bottom: 1px solid #fff;">
+            <th style="text-align: left; padding: 8px;">Блюдо</th>
+            <th style="text-align: left; padding: 8px;">Выход</th>
+            <th style="text-align: left; padding: 8px;">Цена</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding: 8px;">Шашлык из свинины</td><td style="padding: 8px;">200 г</td><td style="padding: 8px;">400 ₽</td></tr>
+          <tr><td style="padding: 8px;">Шашлык из курицы</td><td style="padding: 8px;">200 г</td><td style="padding: 8px;">350 ₽</td></tr>
+          <tr><td style="padding: 8px;">Форель на гриле</td><td style="padding: 8px;">250 г</td><td style="padding: 8px;">550 ₽</td></tr>
+          <tr><td style="padding: 8px;">Овощи на мангале</td><td style="padding: 8px;">150 г</td><td style="padding: 8px;">250 ₽</td></tr>
+          <tr><td style="padding: 8px;">Домашние пельмени</td><td style="padding: 8px;">300 г</td><td style="padding: 8px;">300 ₽</td></tr>
+          <tr><td style="padding: 8px;">Салат "Алтайский"</td><td style="padding: 8px;">200 г</td><td style="padding: 8px;">200 ₽</td></tr>
+          <tr><td style="padding: 8px;">Суп с грибами</td><td style="padding: 8px;">250 г</td><td style="padding: 8px;">250 ₽</td></tr>
+        </tbody>
+      </table>
+      <h3 style="font-size: 24px; margin-bottom: 10px;">🥤 Напитки</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 6px;">Морс кедровый — 250 мл — 120 ₽</li>
+        <li>Чай травяной алтайский — 400 мл — 100 ₽</li>
+      </ul>
+    </div>
+
+    <!-- Блок летней кухни -->
+    <div style="flex: 1 1 400px;">
+      <h2 style="font-size: 32px; margin-bottom: 20px;">🥘 Своя летняя кухня</h2>
+      <img src="img/кухня летняя.jpg" alt="Летняя кухня" style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
+      <p style="font-size: 18px; line-height: 1.6;">
+        Наша летняя кухня — это отличный способ почувствовать себя как дома! Вы можете сами готовить любимые блюда, жарить мясо на наших <strong>мангалах</strong>, устраивать семейные обеды и ужины в уютных <strong>беседках</strong>.
+      </p>
+      <p style="font-size: 18px; margin-top: 10px;">
+        Всё это уже <strong>включено в стоимость проживания</strong> — никаких доплат!
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- === --------------------------------------------3 блок === -->
+
+<section style="background: url('img/главная/3.1.jpg') center/cover no-repeat fixed; padding: 40px 20px; color: white;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 30px; background: rgba(0,0,0,0.5); border-radius: 16px; padding: 30px;">
+
+    <!-- Карточка БАНЯ -->
+    <div style="flex: 1 1 400px; background: rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;">
+      <img src="img/баня.jpg" alt="Баня" style="width: 100%; height: auto;">
+      <div style="padding: 20px;">
+        <h2 style="font-size: 28px; margin-bottom: 10px;">🔥 Баня</h2>
+        <p style="margin-bottom: 10px;"><strong>1 час — 2000 ₽</strong> (минимум 2 часа)</p>
+        <p style="font-size: 16px; line-height: 1.6;">
+          Что может быть лучше после прогулок по горам или купания в реке, чем попариться в настоящей русской бане? Это не только приятно, но и полезно для здоровья, улучшает самочувствие и дарит отличный сон.
+        </p>
+      </div>
+    </div>
+
+    <!-- Карточка ДЕТСКИЙ ГОРОДОК + парковка и Wi-Fi -->
+    <div style="flex: 1 1 400px; background: rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;">
+      <img src="img/детская-зона.jpg" alt="Детский городок" style="width: 100%; height: auto;">
+      <div style="padding: 20px;">
+        <h2 style="font-size: 28px; margin-bottom: 10px;">🎈 Детский надувной городок</h2>
+        <p style="margin-bottom: 10px;"><strong>Бесплатно</strong> для всех гостей!</p>
+        <p style="font-size: 16px; line-height: 1.6;">
+          Вашим детям точно не будет скучно! Яркий, безопасный и весёлый городок подарит радость, а родителям — немного свободного времени и покоя.
+        </p>
+        <hr style="margin: 20px 0; border-color: #ffffff44;">
+        <p style="font-size: 16px; line-height: 1.6;">
+          Также для вашего комфорта: <br>
+          🅿️ <strong>Бесплатная парковка</strong> <br>
+          📶 <strong>Wi-Fi</strong> на всей территории <br>
+          Всё включено в стоимость проживания.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- === --------------------------------------------3 блок === -->
+<section id="contacts">
+  <style>
+    /* 4-й блок Контакты */
+    #contacts {
+      background-image: url('img/главная/3.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #333333; /* тёмно-серый */
+      padding: 60px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-family: Arial, sans-serif;
+      gap: 40px;
+      min-height: 350px;
+      box-sizing: border-box;
+    }
+
+    /* Левая часть с текстом */
+    #contacts .contacts-info {
+      flex: 1 1 350px;
+      max-width: 450px;
+    }
+
+    #contacts .contacts-info h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #333333; /* заголовок тёмно-серый */
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    #contacts .contacts-info p {
+      font-size: 20px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      color: #333333; /* основной текст тёмно-серый */
+      cursor: default;
+    }
+
+    /* Ссылки для телефона и WhatsApp */
+    #contacts .contacts-info a {
+      color: #333333; /* тёмно-серый */
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    #contacts .contacts-info a:hover {
+      color: #a3d55d; /* светло-зеленый при наведении */
+      text-decoration: underline;
+    }
+
+    /* Правая часть — карта */
+    #contacts .contacts-map {
+      flex: 1 1 400px;
+      max-width: 600px;
+      height: 350px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      /* Добавим рамку для отладки - убрать после проверки */
+      /* border: 2px solid red; */
+    }
+
+    /* iframe должен гарантированно занимать весь контейнер */
+    #contacts .contacts-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Адаптив */
+    @media (max-width: 900px) {
+      #contacts {
+        flex-direction: column;
+        padding: 40px 20px;
+        min-height: auto;
+      }
+      #contacts .contacts-info,
+      #contacts .contacts-map {
+        max-width: 100%;
+        flex: none;
+        margin-bottom: 30px;
+      }
+      #contacts .contacts-map {
+        height: 300px;
+      }
+    }
+  </style>
+
+  <div class="contacts-info">
+    <h2>КОНТАКТЫ</h2>
+    <p>
+      <a href="tel:+79635078510">+7‒963‒507‒85‒10</a> (нажмите, чтобы позвонить)<br>
+      <a href="https://wa.me/79635078510" target="_blank" rel="noopener noreferrer">WhatsApp</a> (нажмите, чтобы открыть чат)<br><br>
+      Green House<br>
+      Прибрежная улица, 8<br>
+      пос. Известковый, Майминский район,<br>
+      Республика Алтай, 649104
+    </p>
+  </div>
+
+  <div class="contacts-map">
+<iframe
+  src="https://yandex.ru/map-widget/v1/?ll=85.72776%2C51.757274&z=15&pt=85.72776,51.757274,pm2rdm"
+  width="100%" height="100%" frameborder="0" allowfullscreen style="border:none;">
+</iframe>
+
+  </div>
+</section>
